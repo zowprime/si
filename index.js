@@ -1,4 +1,5 @@
-// Variable identifiant le lieu de stockage des Pages
+
+
 var PageLoc = "./Pages"
 
 // Variables pour A-FRAME qui concerne la scène
@@ -61,28 +62,4 @@ AFRAME.registerComponent('scene-changer', {
     onClick: async function() {
       SwitchArea(this.SceneName)
     }
-  })
-
-  AFRAME.registerComponent('tang', {
-    schema: {
-      angle: {type: 'int', default: 0},
-      Y: {type: 'int', default: 1}
-    },
-  
-    init: async function() {
-      this.update = this.update.bind(this)
-    },
-  
-    update: async function() {  
-      console.log("update")
-      // ------ \\
-      let container = $("#navigation")[0]
-      let angle = this.data["angle"] (180 / Math.PI), radius = container.getAttribute("radius-outer") * 4
-      let x = ( radius ) * Math.cos(angle), z = ( radius ) * Math.sin(angle); 
-    
-      this.el.setAttribute("position", {"x": x, "y": container.getAttribute("position").y + this.data["Y"], "z": z})
-      
-      this.el.object3D.lookAt(container.getAttribute("position"))
-      this.el.setAttribute("visible", "true")
-    },
   })
